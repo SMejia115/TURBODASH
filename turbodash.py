@@ -1,18 +1,17 @@
 import pygame 
 import sys
-from button import Button
-from menu import Menu
+from settings import Settings
+import utils
 
 def main_menu():
   pygame.init()
-  screen = pygame.display.set_mode((800, 600))
+  settings = Settings()
+  screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
   pygame.display.set_caption("TurboDash")
   
-  play_button = Button(300, 200, 200, 50, pygame.image.load("./assets/img/playButton1.png"), pygame.image.load("./assets/img/playButton2.png"), None)
-  quit_button = Button(300, 300, 200, 50, pygame.image.load("./assets/img/exitButton1.png"), pygame.image.load("./assets/img/exitButton2.png"), sys.exit)
-  buttons = [play_button, quit_button]
+  buttons = utils.list_buttons()
 
-  menu = Menu(screen, buttons, pygame.image.load("./assets/img/background.png"))
+  menu = utils.menu_load(screen, buttons)
   menu.run()
 
   while True:
