@@ -56,10 +56,10 @@ def main_menu():
 
     pygame.display.set_caption('Main Menu')
     
-    title_button = Button(210, 100, 600, 100, title_image, title_hover_image, prueba_funcion)
-    play_button = Button(300, 270, 150, 50, play_button_image, play_button_hover_image, play_turboDash)
-    options_button = Button(300, 330, 150, 50, menu_button_image, menu_button_hover_image, prueba_funcion)
-    exit_button = Button(300, 390, 150, 50, exit_button_image, exit_button_hover_image, prueba_funcion)
+    title_button = Button(240, 100, 600, 100, title_image, title_hover_image, prueba_funcion)
+    play_button = Button(320, 270, 150, 50, play_button_image, play_button_hover_image, play_turboDash)
+    options_button = Button(320, 330, 150, 50, menu_button_image, menu_button_hover_image, prueba_funcion)
+    exit_button = Button(320, 390, 150, 50, exit_button_image, exit_button_hover_image, prueba_funcion)
     
 
     run_menu = True
