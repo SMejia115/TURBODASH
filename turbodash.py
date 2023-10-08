@@ -32,7 +32,7 @@ def run_game():
       if event.type == pygame.QUIT:
         sys.exit()
 
-      background_image = pygame.image.load('./assets/img/2.jpg')
+      background_image = pygame.image.load('./assets/img/road1.jpg')
       screen.blit(background_image, (0, 0))
 
       pygame.display.flip()
