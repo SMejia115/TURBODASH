@@ -21,7 +21,23 @@ def main_menu():
         sys.exit()
     pygame.display.flip()
 
+def run_game():
+  pygame.init()
+  settings = Settings()
+  screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
+  pygame.display.set_caption("TurboDash")
 
+  while True:
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        sys.exit()
+
+      background_image = pygame.image.load('./assets/img/2.jpg')
+      screen.blit(background_image, (0, 0))
+
+      pygame.display.flip()
+
+    
 
 
 
