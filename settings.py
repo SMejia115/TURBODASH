@@ -4,3 +4,6 @@ class Settings():
 
         self.screen_width = 800
         self.screen_height = 600
+
+        self.car_speed_factor = 10
+        self.road_limit = 165

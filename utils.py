@@ -17,3 +17,7 @@ def list_buttons():
 def menu_load(screen, buttons):
     menu = Menu(screen, buttons, pygame.image.load("./assets/img/2.jpg"))
     return menu
+
+def road_image(screen):
+    background_image = pygame.image.load('./assets/img/road1.jpg')
+    screen.blit(background_image, (0, 0))
