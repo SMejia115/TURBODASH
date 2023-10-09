@@ -17,9 +17,9 @@ def main_menu():
   screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
   pygame.display.set_caption("TurboDash")
   
-  buttons = utils.list_buttons()
+  buttons_menu, buttons_pause = utils.list_buttons()
 
-  menu = utils.menu_load(screen, buttons)
+  menu = utils.menu_load(screen, buttons_menu)
   menu.run()
 
   while True:
