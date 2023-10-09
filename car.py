@@ -1,14 +1,19 @@
+'''
+The pygame library is imported to load the car image.
+'''
 import pygame
 
-class Car():
+'''
+Car class with its respective attributes and methods. The input is sent settings and screen.
+'''
+class Car:
 
-    def __init__(self, settings, screen):
+    def __init__(self, settings, screen, image):
 
         self.screen = screen
         self.settings = settings
-
-        self.image = pygame.image.load("./assets/img/Audi.png").convert()
-        self.image.set_colorkey((255, 255, 255))
+        self.image = image
+        
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
@@ -23,6 +28,9 @@ class Car():
         self.moving_up = False
         self.moving_down = False
 
+    '''
+  	The update(self, settings) method is used to update the position of the carriage depending on the movement made.
+    '''
     def update(self, settings):
 
         if self.moving_right and self.rect.right < (self.screen_rect.right-settings.road_limit):
@@ -41,5 +49,8 @@ class Car():
 
         self.rect.bottom = self.bottom
 
-    def blitme(self):
+    '''
+  	The draw(self) method is used to draw the carriage.
+    '''
+    def draw(self):
         self.screen.blit(self.image, self.rect)
