@@ -1,3 +1,6 @@
+'''
+The pygame and sys library is imported to manage the TurboDash game and its system functions, as well as the files needed to run the game base.
+'''
 import pygame 
 import sys
 from settings import Settings
@@ -5,6 +8,9 @@ import utils
 from car import Car
 import events
 
+'''
+The main_manu() function is the main function and is the one called when the game is started. It has no input or output parameters. It initializes pygame, the screen with its dimensions and settings and the main menu of the game.
+'''
 def main_menu():
   pygame.init()
   settings = Settings()
@@ -22,6 +28,9 @@ def main_menu():
         sys.exit()
     pygame.display.flip()
 
+'''
+The run_game() function is the one that starts the game and is called after pressing the play button. It has no input or output parameters. It initializes the cart and calls the functions and classes in charge of the car and screen refresh functions.
+'''
 def run_game():
   pygame.init()
   settings = Settings()
@@ -35,5 +44,8 @@ def run_game():
       car.update(settings)
       events.refresh_screen(screen, car)
 
+'''
+If startup to call the main_menu() function.
+'''
 if __name__ == "__main__":
     main_menu()
