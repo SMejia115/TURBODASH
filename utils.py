@@ -7,6 +7,7 @@ from button import Button
 from menu import Menu
 import turbodash as td
 from settings import Settings
+import random
 
 settings = Settings()
 '''
@@ -50,3 +51,14 @@ def car_image():
     car = pygame.image.load("./assets/img/cars/Audi.png").convert()
     car.set_colorkey(settings.car_colorkey)
     return car
+
+def bot_image():
+    images = {
+        pygame.image.load("./assets/img/cars/Audi.png").convert(),
+        pygame.image.load("./assets/img/cars/Black_viper.png").convert(),
+        pygame.image.load("./assets/img/cars/Car.png").convert(),
+        pygame.image.load("./assets/img/cars/Police.png").convert()
+    }
+    bot = random.choice(images)
+    bot.set_colorkey(settings.car_colorkey)
+    return bot
