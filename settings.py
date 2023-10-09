@@ -8,4 +8,5 @@ class Settings:
         self.screen_height = 600
 
         self.car_speed_factor = 10
+        self.car_colorkey = (255, 255, 255)
         self.road_limit = 165

@@ -37,7 +37,7 @@ def run_game():
   screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
   pygame.display.set_caption("TurboDash")
 
-  car = Car(settings, screen)
+  car = Car(settings, screen, utils.car_image())
 
   while True:
       events.check_events(car)

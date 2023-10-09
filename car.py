@@ -8,13 +8,12 @@ Car class with its respective attributes and methods. The input is sent settings
 '''
 class Car:
 
-    def __init__(self, settings, screen):
+    def __init__(self, settings, screen, image):
 
         self.screen = screen
         self.settings = settings
-
-        self.image = pygame.image.load("./assets/img/Audi.png").convert()
-        self.image.set_colorkey((255, 255, 255))
+        self.image = image
+        
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
