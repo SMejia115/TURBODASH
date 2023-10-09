@@ -7,6 +7,7 @@ from settings import Settings
 import utils
 from car import Car
 import events
+ 
 
 '''
 The main_manu() function is the main function and is the one called when the game is started. It has no input or output parameters. It initializes pygame, the screen with its dimensions and settings and the main menu of the game.
