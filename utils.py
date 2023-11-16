@@ -15,10 +15,10 @@ The list_buttons() function is the function in charge of creating the buttons an
 '''
 def list_buttons():
     #Bottons menu start
-    tittle_button = Button(300, 100, 500, 100, pygame.image.load("./assets/img/logo/TurboDash2.png"), pygame.image.load("./assets/img/logo/TurboDash2.png"), None)
-    play_button = Button(375, 300, 150, 50, pygame.image.load("./assets/img/buttons/playButton1.png"), pygame.image.load("./assets/img/buttons/playButton2.png"), td.run_game)
-    settings_button = Button(375, 370, 150, 50, pygame.image.load("./assets/img/buttons/settingsButton1.png"), pygame.image.load("./assets/img/buttons/settingsButton2.png"), None)
-    quit_button = Button(375, 440, 150, 50, pygame.image.load("./assets/img/buttons/exitButton1.png"), pygame.image.load("./assets/img/buttons/exitButton2.png"), sys.exit)
+    tittle_button = Button(250, 100, 500, 100, pygame.image.load("./assets/img/logo/Td.png"), pygame.image.load("./assets/img/logo/Td.png"), None)
+    play_button = Button(380, 300, 150, 50, pygame.image.load("./assets/img/buttons/play1.png"), pygame.image.load("./assets/img/buttons/play2.png"), td.run_game)
+    settings_button = Button(380, 370, 150, 50, pygame.image.load("./assets/img/buttons/settings1.png"), pygame.image.load("./assets/img/buttons/settings2.png"), None)
+    quit_button = Button(380, 440, 150, 50, pygame.image.load("./assets/img/buttons/exit1.png"), pygame.image.load("./assets/img/buttons/exit2.png"), sys.exit)
     buttons_start = [tittle_button, settings_button ,play_button, quit_button]
 
     #Bottons menu pause
