@@ -6,8 +6,8 @@ import sys
 from settings import Settings
 import utils
 from car import Car
-from bot_cars import bot
-import events
+import events 
+import random
 
 '''
 The main_manu() function is the main function and is the one called when the game is started. It has no input or output parameters. It initializes pygame, the screen with its dimensions and settings and the main menu of the game.
@@ -39,11 +39,9 @@ def run_game():
   pygame.display.set_caption("TurboDash")
 
   car = Car(settings, screen, utils.car_image())
-  bot_car = bot(screen, utils.bot_image())
-
+	
   while True:
       events.check_events(car)
-      bot_car.draw()
       car.update(settings)
       events.refresh_screen(screen, car)
 
