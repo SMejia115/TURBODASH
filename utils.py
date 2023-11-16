@@ -41,9 +41,15 @@ def pause_load(screen, buttons):
 '''
 The road_image(screen) function is the function responsible for displaying the road. It has no input or output parameters.
 '''
-def road_image(screen):
-    background_image = pygame.image.load('./assets/img/roads/forestRoad1.png')
-    screen.blit(background_image, (0, 0))
+def road_image(screen, settings):
+    bg_y = 0
+    current_bg_index = 0
+    next_bg_index = random.randint(0, len(settings.background_images) - 1)
+
+    bg_y, current_bg_index, next_bg_index = update_background(settings, screen, bg_y, current_bg_index, next_bg_index)
+
+    # background_image = pygame.image.load('./assets/img/roads/forestRoad1.png')
+    # screen.blit(background_image, (0, 0))
 
 '''
 The car_image() function is the function responsible for loading the image of the car and giving it transparency
@@ -54,22 +60,23 @@ def car_image():
     # car.set_colorkey(settings.car_colorkey)
     return car
 
-def update_background(screen, settings):
-    current_bg_index = 0
-    bg_y = 0
-    while True:
+'''
+Function update_background(settings, screen) is the function in charge of updating the background image. It has screen and settings as input parameters and as output parameters it has the updated background image.
+'''
+
+
+def update_background(settings, screen, bg_y, current_bg_index, next_bg_index):
+    bg_y += settings.bg_speed
+    # Si el fondo se desplaza fuera de la pantalla, reiniciarlo
+    if bg_y >= settings.screen_height:
+        # Cambiar la imagen actual a la siguiente
+        current_bg_index = next_bg_index
+        # Seleccionar una nueva imagen para próxima
         next_bg_index = random.randint(0, len(settings.background_images) - 1)
+        # Reiniciar la posición del fondo
+        bg_y = 0
 
-        # Mover el fondo en dirección opuesta al movimiento del carro
-        bg_y += settings.bg_speed
-
-        # Si el fondo se desplaza fuera de la pantalla, reiniciarlo
-        if bg_y >= settings.screen_height:
-            # Cambiar la imagen actual a la siguiente
-            current_bg_index = next_bg_index
-            # Seleccionar una nueva imagen para próxima
-            next_bg_index = random.randint(0, len(settings.background_images) - 1)
-            # Reiniciar la posición del fondo
-            bg_y = 0
-        screen.blit(settings.background_images[current_bg_index], (0, bg_y))
-        screen.blit(settings.background_images[next_bg_index], (0, bg_y - settings.screen_height))
+    # Dibujar el fondo en la pantalla
+    screen.blit(settings.background_images[current_bg_index], (0, bg_y))
+    screen.blit(settings.background_images[next_bg_index], (0, bg_y - settings.screen_height))
+    return bg_y, current_bg_index, next_bg_index
