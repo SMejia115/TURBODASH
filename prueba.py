@@ -28,8 +28,7 @@ bg_speed = 2
 # Coordenadas iniciales del carro
 car_x = screen_width // 2
 car_y = screen_height - 100
-car_image = pygame.image.load('./assets/img/cars/Audi.png').convert()
-car_image.set_colorkey((255, 255, 255))
+car_image = pygame.image.load('./assets/img/cars/car1.png')
 
 # Índice de la imagen actual y próxima
 current_bg_index = 0
@@ -44,7 +43,6 @@ while True:
 
     # Obtener las teclas presionadas
     keys = pygame.key.get_pressed()
-
     if keys[pygame.K_LEFT] and car_x - car_speed > 0:
         car_x -= car_speed
     if keys[pygame.K_RIGHT] and car_x + car_speed < screen_width - 64:

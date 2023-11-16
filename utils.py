@@ -49,27 +49,27 @@ def road_image(screen):
 The car_image() function is the function responsible for loading the image of the car and giving it transparency
 '''
 def car_image():
-    car = pygame.image.load("./assets/img/cars/Audi.png").convert()
-    car.set_colorkey(settings.car_colorkey)
+    car = pygame.image.load("./assets/img/cars/car2.png")
+    # .convert()
+    # car.set_colorkey(settings.car_colorkey)
     return car
 
 def update_background(screen, settings):
     current_bg_index = 0
     bg_y = 0
-    next_bg_index = random.randint(0, len(settings.background_images) - 1)
-
-     # Mover el fondo en dirección opuesta al movimiento del carro
-    bg_y += settings.bg_speed
-
-    # Si el fondo se desplaza fuera de la pantalla, reiniciarlo
-    if bg_y >= settings.screen_height:
-        # Cambiar la imagen actual a la siguiente
-        current_bg_index = next_bg_index
-        # Seleccionar una nueva imagen para próxima
+    while True:
         next_bg_index = random.randint(0, len(settings.background_images) - 1)
-        # Reiniciar la posición del fondo
-        bg_y = 0
 
-    # Dibujar el fondo en la pantalla
-    screen.blit(settings.background_images[current_bg_index], (0, bg_y))
-    screen.blit(settings.background_images[next_bg_index], (0, bg_y - settings.screen_height))
+        # Mover el fondo en dirección opuesta al movimiento del carro
+        bg_y += settings.bg_speed
+
+        # Si el fondo se desplaza fuera de la pantalla, reiniciarlo
+        if bg_y >= settings.screen_height:
+            # Cambiar la imagen actual a la siguiente
+            current_bg_index = next_bg_index
+            # Seleccionar una nueva imagen para próxima
+            next_bg_index = random.randint(0, len(settings.background_images) - 1)
+            # Reiniciar la posición del fondo
+            bg_y = 0
+        screen.blit(settings.background_images[current_bg_index], (0, bg_y))
+        screen.blit(settings.background_images[next_bg_index], (0, bg_y - settings.screen_height))
