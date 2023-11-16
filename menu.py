@@ -51,24 +51,26 @@ class Menu:
     current_bg_index = 0
     next_bg_index = random.randint(0, len(self.settings.background_images) - 1)
     while True:
-      bg_y += self.settings.bg_speed
+      # Desplazar el fondo
+      bg_y, current_bg_index, next_bg_index = utils.update_background( self.settings, self.screen, bg_y, current_bg_index, next_bg_index)
+    #   bg_y += self.settings.bg_speed
+    # # Si el fondo se desplaza fuera de la pantalla, reiniciarlo
+    #   if bg_y >= self.settings.screen_height:
+    #     # Cambiar la imagen actual a la siguiente
+    #     current_bg_index = next_bg_index
+    #     # Seleccionar una nueva imagen para próxima
+    #     next_bg_index = random.randint(0, len(self.settings.background_images) - 1)
+    #     # Reiniciar la posición del fondo
+    #     bg_y = 0
 
-    # Si el fondo se desplaza fuera de la pantalla, reiniciarlo
-      if bg_y >= self.settings.screen_height:
-        # Cambiar la imagen actual a la siguiente
-        current_bg_index = next_bg_index
-        # Seleccionar una nueva imagen para próxima
-        next_bg_index = random.randint(0, len(self.settings.background_images) - 1)
-        # Reiniciar la posición del fondo
-        bg_y = 0
-
-      # Dibujar el fondo en la pantalla
-      self.screen.blit(self.settings.background_images[current_bg_index], (0, bg_y))
-      self.screen.blit(self.settings.background_images[next_bg_index], (0, bg_y - self.settings.screen_height))
+    #   # Dibujar el fondo en la pantalla
+    #   self.screen.blit(self.settings.background_images[current_bg_index], (0, bg_y))
+    #   self.screen.blit(self.settings.background_images[next_bg_index], (0, bg_y - self.settings.screen_height))
       self.check_events() 
       for button in self.buttons:
         button.draw(self.screen)
 
       pygame.display.flip()
+
+  
       
-      # self.draw()

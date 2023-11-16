@@ -39,11 +39,15 @@ def run_game():
   pygame.display.set_caption("TurboDash")
 
   car = Car(settings, screen, utils.car_image())
+
+  bg_y = 0
+  current_bg_index = 0
+  next_bg_index = random.randint(0, len(settings.background_images) - 1)
 	
   while True:
       events.check_events(car)
       car.update(settings)
-      events.refresh_screen(screen, car)
+      bg_y, current_bg_index, next_bg_index = events.refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index)
 
 '''
 If startup to call the main_menu() function.
