@@ -57,7 +57,8 @@ def check_keyup_events(car, event):
 '''
 The function refresh_screen(screen, car) is in charge of refreshing the screen for the different elements that interact in the game such as the car or the road. It has as input parameters the screen and the car and no output parameters. It calls the different functions and class methods needed for this task.
 '''
-def refresh_screen(screen, car):
-    utils.road_image(screen)
+def refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index):
+    bg_y, current_bg_index, next_bg_index = utils.update_background(settings, screen, bg_y, current_bg_index, next_bg_index)
     car.draw()
     pygame.display.flip()
+    return bg_y, current_bg_index, next_bg_index

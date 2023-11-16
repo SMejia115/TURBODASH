@@ -18,6 +18,6 @@ class Settings:
                      pygame.image.load('./assets/img/roads/forestRoad2.png'),
                      pygame.image.load('./assets/img/roads/forestRoad1.png')]
         
-        self.bg_speed = 2
+        self.bg_speed = 5
 
         
