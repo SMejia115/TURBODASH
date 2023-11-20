@@ -17,15 +17,20 @@ def list_buttons():
     #Bottons menu start
     tittle_button = Button(250, 100, 500, 100, pygame.image.load("./assets/img/logo/Td.png"), pygame.image.load("./assets/img/logo/Td.png"), None)
     play_button = Button(380, 300, 150, 50, pygame.image.load("./assets/img/buttons/play1.png"), pygame.image.load("./assets/img/buttons/play2.png"), td.run_game)
-    settings_button = Button(380, 370, 150, 50, pygame.image.load("./assets/img/buttons/settings1.png"), pygame.image.load("./assets/img/buttons/settings2.png"), None)
+    info_button = Button(380, 370, 150, 50, pygame.image.load("./assets/img/buttons/settings1.png"), pygame.image.load("./assets/img/buttons/settings2.png"), td.info_game)
     quit_button = Button(380, 440, 150, 50, pygame.image.load("./assets/img/buttons/exit1.png"), pygame.image.load("./assets/img/buttons/exit2.png"), sys.exit)
-    buttons_start = [tittle_button, settings_button ,play_button, quit_button]
+    buttons_start = [tittle_button, info_button, play_button, quit_button]
 
     #Bottons menu pause
     pause_button = Button(550, 50, 200, 50, pygame.image.load("./assets/img/logo/Pause.png"), pygame.image.load("./assets/img/logo/Pause2.png"), None)
     buttons_pause = [tittle_button, play_button, quit_button, pause_button]
 
-    return buttons_start, buttons_pause
+    #Bottons menu credits
+    credits_button = Button(0, 0, 910, 700, pygame.image.load("./assets/img/backgrounds/credits.png"), pygame.image.load("./assets/img/backgrounds/credits.png"), None)
+    back_credits_button = Button(380, 620, 150, 50, pygame.image.load("./assets/img/buttons/back1.png"), pygame.image.load("./assets/img/buttons/back2.png"), td.main_menu)
+    buttons_credits = [credits_button, back_credits_button]
+
+    return buttons_start, buttons_pause, buttons_credits
 
 '''
 The function menu_load(screen, buttons) is the function in charge of creating the menu. It has screen and buttons as input parameters and as output parameters it has the created menu.
