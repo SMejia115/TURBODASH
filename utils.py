@@ -15,15 +15,15 @@ The list_buttons() function is the function in charge of creating the buttons an
 '''
 def list_buttons():
     #Bottons menu start
-    tittle_button = Button(250, 100, 500, 100, pygame.image.load("./assets/img/logo/Td.png"), pygame.image.load("./assets/img/logo/Td.png"), None)
-    play_button = Button(380, 300, 150, 50, pygame.image.load("./assets/img/buttons/play1.png"), pygame.image.load("./assets/img/buttons/play2.png"), td.run_game)
-    info_button = Button(380, 370, 150, 50, pygame.image.load("./assets/img/buttons/settings1.png"), pygame.image.load("./assets/img/buttons/settings2.png"), td.info_game)
-    quit_button = Button(380, 440, 150, 50, pygame.image.load("./assets/img/buttons/exit1.png"), pygame.image.load("./assets/img/buttons/exit2.png"), sys.exit)
-    buttons_start = [tittle_button, info_button, play_button, quit_button]
+    tittle_start_button = Button(250, 100, 500, 100, pygame.image.load("./assets/img/logo/Td.png"), pygame.image.load("./assets/img/logo/Td.png"), None)
+    play_start_button = Button(380, 300, 150, 50, pygame.image.load("./assets/img/buttons/play1.png"), pygame.image.load("./assets/img/buttons/play2.png"), td.run_game)
+    info_start_button = Button(380, 370, 150, 50, pygame.image.load("./assets/img/buttons/settings1.png"), pygame.image.load("./assets/img/buttons/settings2.png"), td.info_game)
+    quit_start_button = Button(380, 440, 150, 50, pygame.image.load("./assets/img/buttons/exit1.png"), pygame.image.load("./assets/img/buttons/exit2.png"), sys.exit)
+    buttons_start = [tittle_start_button, info_start_button, play_start_button, quit_start_button]
 
     #Bottons menu pause
     pause_button = Button(550, 50, 200, 50, pygame.image.load("./assets/img/logo/Pause.png"), pygame.image.load("./assets/img/logo/Pause2.png"), None)
-    buttons_pause = [tittle_button, play_button, quit_button, pause_button]
+    buttons_pause = [tittle_start_button, play_start_button, quit_start_button, pause_button]
 
     #Bottons menu credits
     credits_button = Button(0, 0, 910, 700, pygame.image.load("./assets/img/backgrounds/credits.png"), pygame.image.load("./assets/img/backgrounds/credits.png"), None)
