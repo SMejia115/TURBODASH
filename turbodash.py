@@ -18,7 +18,7 @@ def main_menu():
   screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
   pygame.display.set_caption("TurboDash")
   
-  buttons_menu, buttons_pause = utils.list_buttons()
+  buttons_menu, buttons_pause, buttons_credits = utils.list_buttons()
 
   menu = utils.menu_load(screen, buttons_menu)
   menu.run()
@@ -48,6 +48,23 @@ def run_game():
       events.check_events(car)
       car.update(settings)
       bg_y, current_bg_index, next_bg_index = events.refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index)
+
+def info_game():
+  pygame.init()
+  settings = Settings()
+  screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
+  pygame.display.set_caption("¡Credits TurboDash!")
+
+  buttons_menu, buttons_pause, buttons_credits = utils.list_buttons()
+
+  menu = utils.menu_load(screen, buttons_credits)
+  menu.run()
+
+  while True:
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        sys.exit()
+    pygame.display.flip()
 
 '''
 If startup to call the main_menu() function.
