@@ -38,7 +38,7 @@ def list_buttons():
     back_credits_button = Button(380, 620, 150, 50, pygame.image.load("./assets/img/buttons/back1.png"), pygame.image.load("./assets/img/buttons/back2.png"), td.main_menu)
     buttons_credits = [credits_button, back_credits_button]
 
-    return buttons_start, buttons_pause, buttons_credits, lost_button
+    return buttons_start, buttons_pause, buttons_credits, buttons_lost
 
 '''
 The function menu_load(screen, buttons) is the function in charge of creating the menu. It has screen and buttons as input parameters and as output parameters it has the created menu.
@@ -112,7 +112,7 @@ def generate_bot(settings, screen, bots):
     print("Bot generated , rail: ", rail, " direction: ", direction)
 
 
-def update_bots(bots, settings, car):
+def update_bots(bots, settings, car, screen):
     for bot in bots.copy():
         bot.update(settings)
         if bot.rect.top >= settings.screen_height:
@@ -124,7 +124,7 @@ def update_bots(bots, settings, car):
         settings.bg_speed = 5
         settings.bot_generation_time = 10000
         print("Bots deleted")
-        td.main_menu()
+        td.lost_menu(screen)
         return True
 
 def draw_bots(bots):

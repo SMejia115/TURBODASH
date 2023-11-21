@@ -120,11 +120,11 @@ def lost_menu(screen):
         if event.key == pygame.K_q:
           main_menu()
       elif event.type == pygame.MOUSEMOTION:
-        for button in buttons_pause:
+        for button in buttons_lost:
           button.check_hover(event.pos)
       elif event.type == pygame.MOUSEBUTTONDOWN:
         if event.button == 1:
-          for button in buttons_pause:
+          for button in buttons_lost:
             if button.is_hovered:
               button.perform_action()
 

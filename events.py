@@ -71,7 +71,7 @@ The function refresh_screen(screen, car) is in charge of refreshing the screen f
 def refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index, bots):
     bg_y, current_bg_index, next_bg_index = utils.update_background(settings, screen, bg_y, current_bg_index, next_bg_index)
     car.draw()
-    utils.update_bots(bots, settings, car)
+    utils.update_bots(bots, settings, car, screen)
     utils.draw_bots(bots)
     pygame.display.flip()
     return bg_y, current_bg_index, next_bg_index
