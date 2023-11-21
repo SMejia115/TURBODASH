@@ -68,7 +68,7 @@ def info_game():
   screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
   pygame.display.set_caption("¡Credits TurboDash!")
 
-  buttons_menu, buttons_pause, buttons_credits = utils.list_buttons()
+  buttons_menu, buttons_pause, buttons_credits, buttons_lost = utils.list_buttons()
 
   menu = utils.menu_load(screen, buttons_credits)
   menu.run()
