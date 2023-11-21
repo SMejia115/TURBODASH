@@ -3,6 +3,7 @@ The pygame library is imported to load the car image.
 '''
 import pygame
 
+
 '''
 Car class with its respective attributes and methods. The input is sent settings and screen.
 '''

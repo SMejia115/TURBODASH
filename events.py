@@ -9,20 +9,23 @@ import turbodash as td
 '''
 The function check_events(car) is the function in charge of checking the different events related to the carriage such as movement. It has cart as input parameter and no output parameters. Depending on the type of event it calls other functions to do the more detailed check.
 '''
-def check_events(car, pause):
+def check_events(car, settings, screen, bots, pause):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
-
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_p:
                 # Cambiar la bandera de pausa
                 return not pause
             elif not pause:
                 check_keydown_events(car, event)
-
         elif event.type == pygame.KEYUP and not pause:
             check_keyup_events(car, event)
+        elif event.type == pygame.USEREVENT: # Evento de generación de bots (CADA CIERTO TIEMPO)
+            utils.generate_bot(settings, screen, bots)
+        elif event.type == pygame.USEREVENT+1: # Evento de aumentar la velocidad de los bots (CADA CIERTO TIEMPO) y la generación de bots   
+            settings.bg_speed += 5
+            settings.bot_generation_time -= 100 
 
     return pause
 
@@ -65,8 +68,10 @@ def check_keyup_events(car, event):
 '''
 The function refresh_screen(screen, car) is in charge of refreshing the screen for the different elements that interact in the game such as the car or the road. It has as input parameters the screen and the car and no output parameters. It calls the different functions and class methods needed for this task.
 '''
-def refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index):
+def refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index, bots):
     bg_y, current_bg_index, next_bg_index = utils.update_background(settings, screen, bg_y, current_bg_index, next_bg_index)
     car.draw()
+    utils.update_bots(bots, settings, car)
+    utils.draw_bots(bots)
     pygame.display.flip()
     return bg_y, current_bg_index, next_bg_index

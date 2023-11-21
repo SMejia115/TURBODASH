@@ -8,6 +8,8 @@ import utils
 from car import Car
 import events 
 import random
+from botVehicle import BotVehicle
+from pygame.sprite import Group
 
 '''
 The main_manu() function is the main function and is the one called when the game is started. It has no input or output parameters. It initializes pygame, the screen with its dimensions and settings and the main menu of the game.
@@ -37,21 +39,28 @@ def run_game():
   settings = Settings()
   screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
   pygame.display.set_caption("TurboDash")
-
   car = Car(settings, screen, utils.car_image())
+  bots = Group()
+
+  #Initial background configuration
 
   bg_y = 0
   current_bg_index = 0
   next_bg_index = random.randint(0, len(settings.background_images) - 1)
+
+  clock = pygame.time.Clock()
+
+  pygame.time.set_timer(pygame.USEREVENT, settings.bot_generation_time)
+  pygame.time.set_timer(pygame.USEREVENT+1, 10000)
   pause = False
 	
   while True:
-    pause = events.check_events(car, pause)
+    pause = events.check_events(car, settings, screen, bots, pause)
     if pause:
       pause = pause_menu(screen, pause)
     if not pause:
         car.update(settings)
-        bg_y, current_bg_index, next_bg_index = events.refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index)
+        bg_y, current_bg_index, next_bg_index = events.refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index, bots)
 
 def info_game():
   pygame.init()
@@ -122,6 +131,9 @@ def lost_menu(screen):
     for button in buttons_lost:
       button.draw(screen)
     pygame.display.flip()
+
+    #Controla la velocidad de actualización de la pantalla
+    
 
 '''
 If startup to call the main_menu() function.
