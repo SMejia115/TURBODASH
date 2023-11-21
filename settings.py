@@ -29,4 +29,6 @@ class Settings:
         
         self.bg_speed = 5
 
+        self.bot_generation_time = 1000
+
         

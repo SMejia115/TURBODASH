@@ -7,7 +7,10 @@ from button import Button
 from menu import Menu
 import turbodash as td
 from settings import Settings
+from pygame.sprite import Group
+from botVehicle import BotVehicle
 import random
+
 
 settings = Settings()
 '''
@@ -85,3 +88,46 @@ def update_background(settings, screen, bg_y, current_bg_index, next_bg_index):
     screen.blit(settings.background_images[current_bg_index], (0, bg_y))
     screen.blit(settings.background_images[next_bg_index], (0, bg_y - settings.screen_height))
     return bg_y, current_bg_index, next_bg_index
+
+
+'''
+Function generateBots(screen, settings, bot_image) is the function in charge of generating the bots. It has screen, settings and bot_image as input parameters and as output parameters it has the generated bots.
+'''
+
+def generate_bot(settings, screen, bots):
+    bot_image = random.choice(settings.bot_images)
+    rail = random.randint(0, 3)
+    if (rail == 0 or rail == 1):
+        direction = 1
+    elif (rail == 2 or rail == 3):
+        direction = -1
+    bot = BotVehicle(settings, screen, bot_image, direction, rail)
+    bots.add(bot)
+    bot.draw()
+    print("Bot generated , rail: ", rail, " direction: ", direction)
+
+
+def update_bots(bots, settings, car):
+    for bot in bots.copy():
+        bot.update(settings)
+        if bot.rect.top >= settings.screen_height:
+            bots.remove(bot)
+            print("Bot deleted")
+    colision = check_collisions(car, bots)
+    if colision:
+        bots.empty()
+        settings.bg_speed = 5
+        settings.bot_generation_time = 10000
+        print("Bots deleted")
+        td.main_menu()
+        return True
+
+def draw_bots(bots):
+    for bot in bots.sprites():
+        bot.draw()
+
+def check_collisions(car, bots):
+    if pygame.sprite.spritecollideany(car, bots):
+        print("Car crashed")
+        return True
+    return False
