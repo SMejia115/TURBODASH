@@ -18,16 +18,16 @@ def main_menu():
   screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
   pygame.display.set_caption("TurboDash")
   
-  buttons_menu, buttons_pause, buttons_credits = utils.list_buttons()
+  buttons_menu, buttons_pause, buttons_credits, buttons_lost = utils.list_buttons()
 
   menu = utils.menu_load(screen, buttons_menu)
   menu.run()
 
-  while True:
-    for event in pygame.event.get():
-      if event.type == pygame.QUIT:
-        sys.exit()
-    pygame.display.flip()
+  # while True:
+  #   for event in pygame.event.get():
+  #     if event.type == pygame.QUIT:
+  #       sys.exit()
+  #   pygame.display.flip()
 
 '''
 The run_game() function is the one that starts the game and is called after pressing the play button. It has no input or output parameters. It initializes the cart and calls the functions and classes in charge of the car and screen refresh functions.
@@ -43,11 +43,15 @@ def run_game():
   bg_y = 0
   current_bg_index = 0
   next_bg_index = random.randint(0, len(settings.background_images) - 1)
+  pause = False
 	
   while True:
-      events.check_events(car)
-      car.update(settings)
-      bg_y, current_bg_index, next_bg_index = events.refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index)
+    pause = events.check_events(car, pause)
+    if pause:
+      pause = pause_menu(screen, pause)
+    if not pause:
+        car.update(settings)
+        bg_y, current_bg_index, next_bg_index = events.refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index)
 
 def info_game():
   pygame.init()
@@ -60,14 +64,67 @@ def info_game():
   menu = utils.menu_load(screen, buttons_credits)
   menu.run()
 
+  # while True:
+  #   for event in pygame.event.get():
+  #     if event.type == pygame.QUIT:
+  #       sys.exit()
+  #   pygame.display.flip()
+
+def pause_menu(screen, pause):
+  
+  settings = Settings()
+  buttons_menu, buttons_pause, buttons_credits, buttons_lost = utils.list_buttons()
+
   while True:
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
         sys.exit()
+      elif event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_p:
+          # Cambiar la bandera de pausa
+          return not pause
+        if event.key == pygame.K_q:
+          main_menu()
+      elif event.type == pygame.MOUSEMOTION:
+        for button in buttons_pause:
+          button.check_hover(event.pos)
+      elif event.type == pygame.MOUSEBUTTONDOWN:
+        if event.button == 1:
+          for button in buttons_pause:
+            if button.is_hovered:
+              button.perform_action()
+
+    for button in buttons_pause:
+      button.draw(screen)
+    pygame.display.flip()
+
+def lost_menu(screen):
+  
+  settings = Settings()
+  buttons_menu, buttons_pause, buttons_credits, buttons_lost = utils.list_buttons()
+
+  while True:
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        sys.exit()
+      elif event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_q:
+          main_menu()
+      elif event.type == pygame.MOUSEMOTION:
+        for button in buttons_pause:
+          button.check_hover(event.pos)
+      elif event.type == pygame.MOUSEBUTTONDOWN:
+        if event.button == 1:
+          for button in buttons_pause:
+            if button.is_hovered:
+              button.perform_action()
+
+    for button in buttons_lost:
+      button.draw(screen)
     pygame.display.flip()
 
 '''
 If startup to call the main_menu() function.
 '''
 if __name__ == "__main__":
-    main_menu()
+  main_menu()

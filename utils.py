@@ -10,6 +10,7 @@ from settings import Settings
 import random
 
 settings = Settings()
+
 '''
 The list_buttons() function is the function in charge of creating the buttons and adding them to a list of buttons. It has no input parameters and as output parameters it has the list of buttons.
 '''
@@ -22,15 +23,19 @@ def list_buttons():
     buttons_start = [tittle_start_button, info_start_button, play_start_button, quit_start_button]
 
     #Bottons menu pause
-    pause_button = Button(550, 50, 200, 50, pygame.image.load("./assets/img/logo/Pause.png"), pygame.image.load("./assets/img/logo/Pause2.png"), None)
-    buttons_pause = [tittle_start_button, play_start_button, quit_start_button, pause_button]
+    pause_button = Button(0, 0, 910, 700, pygame.image.load("./assets/img/backgrounds/pause.png"), pygame.image.load("./assets/img/backgrounds/pause.png"), None)
+    buttons_pause = [pause_button]
+
+    #Bottons menu lost
+    lost_button = Button(0, 0, 910, 700, pygame.image.load("./assets/img/backgrounds/lost.png"), pygame.image.load("./assets/img/backgrounds/lost.png"), None)
+    buttons_lost = [lost_button]
 
     #Bottons menu credits
     credits_button = Button(0, 0, 910, 700, pygame.image.load("./assets/img/backgrounds/credits.png"), pygame.image.load("./assets/img/backgrounds/credits.png"), None)
     back_credits_button = Button(380, 620, 150, 50, pygame.image.load("./assets/img/buttons/back1.png"), pygame.image.load("./assets/img/buttons/back2.png"), td.main_menu)
     buttons_credits = [credits_button, back_credits_button]
 
-    return buttons_start, buttons_pause, buttons_credits
+    return buttons_start, buttons_pause, buttons_credits, lost_button
 
 '''
 The function menu_load(screen, buttons) is the function in charge of creating the menu. It has screen and buttons as input parameters and as output parameters it has the created menu.
