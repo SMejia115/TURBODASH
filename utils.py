@@ -80,3 +80,11 @@ def update_background(settings, screen, bg_y, current_bg_index, next_bg_index):
     screen.blit(settings.background_images[current_bg_index], (0, bg_y))
     screen.blit(settings.background_images[next_bg_index], (0, bg_y - settings.screen_height))
     return bg_y, current_bg_index, next_bg_index
+
+
+'''
+Function generateBots(screen, settings, bot_image) is the function in charge of generating the bots. It has screen, settings and bot_image as input parameters and as output parameters it has the generated bots.
+'''
+
+# def generateBots(screen, settings, bot_image):
+    
