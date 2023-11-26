@@ -28,7 +28,7 @@ class BotVehicle(Sprite):
 
   def update(self, settings):
     if self.direction == 1:
-      self.bottom += (settings.bg_speed-1)
+      self.bottom += (settings.bg_speed+2)
     else:
       self.bottom -= (settings.bg_speed-1)
 
