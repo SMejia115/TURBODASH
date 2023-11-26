@@ -25,7 +25,8 @@ class Settings:
                     pygame.image.load('./assets/img/bots/bot5.png'),
                     pygame.image.load('./assets/img/bots/bot6.png')]
         
-        
+        self.crash = pygame.mixer.Sound("./assets/sounds/car-explosion.mp3")
+        self.car = pygame.mixer.Sound("./assets/sounds/car.wav")
         
         self.bg_speed = 5
 

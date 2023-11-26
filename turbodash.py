@@ -16,6 +16,7 @@ The main_manu() function is the main function and is the one called when the gam
 '''
 def main_menu():
   pygame.init()
+  pygame.mixer.init()
   settings = Settings()
   screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
   pygame.display.set_caption("TurboDash")
@@ -110,6 +111,7 @@ def pause_menu(screen, pause):
 def lost_menu(screen):
   
   settings = Settings()
+  pygame.mixer.Sound.play(settings.crash)
   buttons_menu, buttons_pause, buttons_credits, buttons_lost = utils.list_buttons()
 
   while True:
