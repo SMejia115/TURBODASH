@@ -6,6 +6,7 @@ import sys
 import utils 
 from settings import Settings
 import random 
+import turbodash as td
 
 '''
 Menu class with its respective attributes and methods. In input, the screen, the buttons and the background image are sent to it.
@@ -16,12 +17,6 @@ class Menu:
     self.buttons = buttons
     self.background_img = background_img
     self.settings = Settings()
-
-  '''
-  The pygame.mixer library is imported to play the background music of the game.
-  '''
-  pygame.mixer.init()
-  pygame.mixer.music.load("./assets/sounds/main_menu.mp3")
   
   '''
   Method check_events(self) is used to check what is being done with the buttons shown in the menu and what to do with that event.
@@ -58,7 +53,6 @@ class Menu:
     bg_y = 0
     current_bg_index = 0
     next_bg_index = random.randint(0, len(self.settings.background_images) - 1)
-    pygame.mixer.music.play(-1)
     while True:
       # Desplazar el fondo
       bg_y, current_bg_index, next_bg_index = utils.update_background( self.settings, self.screen, bg_y, current_bg_index, next_bg_index)
@@ -78,5 +72,8 @@ class Menu:
       self.check_events() 
       for button in self.buttons:
         button.draw(self.screen)
+      
+      if not pygame.mixer.music.get_busy():
+        td.play_music()
 
       pygame.display.flip()
