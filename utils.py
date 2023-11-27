@@ -113,7 +113,7 @@ def generate_bot(settings, screen, bots):
     print("Bot generated , rail: ", rail, " direction: ", direction)
 
 
-def update_bots(bots, settings, car, screen):
+def update_bots(bots, settings, car, screen, stats):
     for bot in bots.copy():
         bot.update(settings)
         if bot.rect.top >= settings.screen_height:
@@ -125,6 +125,7 @@ def update_bots(bots, settings, car, screen):
         settings.bg_speed = 5
         settings.bot_generation_time = 10000
         print("Bots deleted")
+        stats.reset_score()
         td.lost_menu(screen)
         return True
 

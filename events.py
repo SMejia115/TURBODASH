@@ -5,11 +5,13 @@ import sys
 import pygame
 import utils
 import turbodash as td
+from stats import Stats
+import math
 
 '''
 The function check_events(car) is the function in charge of checking the different events related to the carriage such as movement. It has cart as input parameter and no output parameters. Depending on the type of event it calls other functions to do the more detailed check.
 '''
-def check_events(car, settings, screen, bots, pause):
+def check_events(car, settings, screen, bots, pause, stats):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
@@ -24,9 +26,13 @@ def check_events(car, settings, screen, bots, pause):
         elif event.type == pygame.USEREVENT: # Evento de generación de bots (CADA CIERTO TIEMPO)
             utils.generate_bot(settings, screen, bots)
         elif event.type == pygame.USEREVENT+1: # Evento de aumentar la velocidad de los bots (CADA CIERTO TIEMPO) y la generación de bots   
-            settings.bg_speed *= 1.5
-            settings.bot_generation_time *= 1.5
-
+            settings.bg_speed *= 1.1
+            settings.bot_generation_time *= 0.9
+            print("Bots speed increased =", settings.bg_speed, "Bots generation time decreased =", settings.bot_generation_time)
+        elif event.type == pygame.USEREVENT+2: # Evento para aumentar el puntaje
+            # stats.score += 1
+            stats.update_score(math.floor(settings.bg_speed))
+            # stats.draw_score(screen)
     return pause
 
 
@@ -68,11 +74,15 @@ def check_keyup_events(car, event):
 '''
 The function refresh_screen(screen, car) is in charge of refreshing the screen for the different elements that interact in the game such as the car or the road. It has as input parameters the screen and the car and no output parameters. It calls the different functions and class methods needed for this task.
 '''
-def refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index, bots):
+def refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index, bots, stats):
+
     bg_y, current_bg_index, next_bg_index = utils.update_background(settings, screen, bg_y, current_bg_index, next_bg_index)
     car.draw()
-    utils.update_bots(bots, settings, car, screen)
+    utils.update_bots(bots, settings, car, screen, stats)
     utils.draw_bots(bots)
+
+    stats.draw_score(screen)
+
     pygame.display.flip()
     return bg_y, current_bg_index, next_bg_index
 
