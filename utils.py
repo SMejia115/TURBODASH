@@ -40,6 +40,7 @@ def list_buttons():
 
     return buttons_start, buttons_pause, buttons_credits, buttons_lost
 
+    
 '''
 The function menu_load(screen, buttons) is the function in charge of creating the menu. It has screen and buttons as input parameters and as output parameters it has the created menu.
 '''

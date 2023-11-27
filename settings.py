@@ -3,6 +3,8 @@ Settings class with its respective setting attributes.
 '''
 import pygame
 
+pygame.mixer.init()
+
 class Settings:
 
     def __init__(self):
@@ -25,7 +27,15 @@ class Settings:
                     pygame.image.load('./assets/img/bots/bot5.png'),
                     pygame.image.load('./assets/img/bots/bot6.png')]
         
+        self.crash = pygame.mixer.Sound("./assets/sounds/car-explosion.mp3")
+        self.car = pygame.mixer.Sound("./assets/sounds/car_engine.mp3")
+        self.horn = pygame.mixer.Sound("./assets/sounds/car-horn.mp3")
         
+        self.music = ['./assets/sounds/music/FeelTheRushJunkieXLRemixElectroVersion.mp3',
+                    './assets/sounds/music/MyFriendDarioElectro.mp3',
+                    './assets/sounds/music/RideAWhiteHorse.mp3',
+                    './assets/sounds/music/Steamworks.mp3',
+                    './assets/sounds/music/WashingUpTiga.mp3']
         
         self.bg_speed = 5
 
