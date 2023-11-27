@@ -24,8 +24,8 @@ def check_events(car, settings, screen, bots, pause):
         elif event.type == pygame.USEREVENT: # Evento de generación de bots (CADA CIERTO TIEMPO)
             utils.generate_bot(settings, screen, bots)
         elif event.type == pygame.USEREVENT+1: # Evento de aumentar la velocidad de los bots (CADA CIERTO TIEMPO) y la generación de bots   
-            settings.bg_speed += 5
-            settings.bot_generation_time -= 100 
+            settings.bg_speed *= 1.5
+            settings.bot_generation_time *= 1.5
 
     return pause
 
@@ -75,3 +75,4 @@ def refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index,
     utils.draw_bots(bots)
     pygame.display.flip()
     return bg_y, current_bg_index, next_bg_index
+

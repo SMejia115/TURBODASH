@@ -18,6 +18,7 @@ settings = Settings()
 The list_buttons() function is the function in charge of creating the buttons and adding them to a list of buttons. It has no input parameters and as output parameters it has the list of buttons.
 '''
 def list_buttons():
+    settings = Settings()
     #Bottons menu start
     tittle_start_button = Button(250, 100, 500, 100, pygame.image.load("./assets/img/logo/Td.png"), pygame.image.load("./assets/img/logo/Td.png"), None)
     play_start_button = Button(380, 300, 150, 50, pygame.image.load("./assets/img/buttons/play1.png"), pygame.image.load("./assets/img/buttons/play2.png"), td.run_game)
