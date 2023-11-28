@@ -13,6 +13,10 @@ from pygame.sprite import Group
 from stats import Stats
 
 
+settings = Settings()
+songs = settings.music
+
+
 '''
 The main_manu() function is the main function and is the one called when the game is started. It has no input or output parameters. It initializes pygame, the screen with its dimensions and settings and the main menu of the game.
 '''
@@ -21,6 +25,7 @@ stats = Stats(settings)
 
 def main_menu():
   pygame.init()
+  pygame.mixer.init()
   settings = Settings()
   screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
   pygame.display.set_caption("TurboDash")
@@ -40,8 +45,7 @@ def main_menu():
 The run_game() function is the one that starts the game and is called after pressing the play button. It has no input or output parameters. It initializes the cart and calls the functions and classes in charge of the car and screen refresh functions.
 '''
 def run_game():
-  print("Entró a Run Game")
-  pygame.init()
+  # pygame.init()
   settings = Settings()
   screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
   pygame.display.set_caption("TurboDash")
@@ -64,11 +68,9 @@ def run_game():
   pause = False
 	
   while True:
-    # if settings.nickname == '':
-    #   settings.nickname = get_nickname(screen, settings)
-
-
-    pause = events.check_events(car, settings, screen, bots, pause, stats)
+    pause = events.check_events(car, settings, screen, bots, pause)
+    if not pygame.mixer.music.get_busy():
+        play_music()
     if pause:
       pause = pause_menu(screen, pause)
     if not pause:
@@ -80,7 +82,7 @@ def run_game():
 '''
 
 def info_game():
-  pygame.init()
+  # pygame.init()
   settings = Settings()
   screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
   pygame.display.set_caption("¡Credits TurboDash!")
@@ -160,6 +162,10 @@ def pause_menu(screen, pause):
 
     for button in buttons_pause:
       button.draw(screen)
+
+    if not pygame.mixer.music.get_busy():
+        play_music()
+
     pygame.display.flip()
 
 
@@ -168,7 +174,8 @@ def pause_menu(screen, pause):
 '''
 def lost_menu(screen):
   
-  # settings = Settings()
+  settings = Settings()
+  pygame.mixer.Sound.play(settings.crash)
   buttons_menu, buttons_pause, buttons_credits, buttons_lost = utils.list_buttons()
 
   while True:
@@ -189,10 +196,19 @@ def lost_menu(screen):
 
     for button in buttons_lost:
       button.draw(screen)
+
+    if not pygame.mixer.music.get_busy():
+        play_music()
+
     pygame.display.flip()
 
     #Controla la velocidad de actualización de la pantalla
     
+
+def play_music():
+  pygame.mixer.music.set_volume(0.3)
+  pygame.mixer.music.load(random.choice(songs))
+  pygame.mixer.music.play()
 
 '''
 If startup to call the main_menu() function.

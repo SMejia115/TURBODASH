@@ -6,6 +6,8 @@ import sys
 import utils 
 from settings import Settings
 import random 
+import turbodash as td
+
 '''
 Menu class with its respective attributes and methods. In input, the screen, the buttons and the background image are sent to it.
 '''
@@ -15,7 +17,7 @@ class Menu:
     self.buttons = buttons
     self.background_img = background_img
     self.settings = Settings()
-
+  
   '''
   Method check_events(self) is used to check what is being done with the buttons shown in the menu and what to do with that event.
   '''
@@ -31,6 +33,7 @@ class Menu:
         if event.button == 1:
           for button in self.buttons:
             if button.is_hovered:
+              pygame.mixer.music.pause()
               button.perform_action()
 
   '''
@@ -69,5 +72,8 @@ class Menu:
       self.check_events() 
       for button in self.buttons:
         button.draw(self.screen)
+      
+      if not pygame.mixer.music.get_busy():
+        td.play_music()
 
       pygame.display.flip()

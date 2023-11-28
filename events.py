@@ -7,6 +7,14 @@ import utils
 import turbodash as td
 from stats import Stats
 import math
+from settings import Settings
+
+settings = Settings()
+
+'''
+The pygame.mixer library is imported to play the background music of the game.
+'''
+pygame.mixer.init()
 
 '''
 The function check_events(car) is the function in charge of checking the different events related to the carriage such as movement. It has cart as input parameter and no output parameters. Depending on the type of event it calls other functions to do the more detailed check.
@@ -42,15 +50,22 @@ The function check_keydown_events(car, events) is in charge of checking the diff
 def check_keydown_events(car, event):
     if event.key == pygame.K_RIGHT:
         car.moving_right = True
+        pygame.mixer.Sound.play(settings.car)
 
     elif event.key == pygame.K_LEFT:
         car.moving_left = True
+        pygame.mixer.Sound.play(settings.car)
 
     elif event.key == pygame.K_UP:
         car.moving_up = True
+        pygame.mixer.Sound.play(settings.car)
 
     elif event.key == pygame.K_DOWN:
         car.moving_down = True
+        pygame.mixer.Sound.play(settings.car)
+
+    elif event.key == pygame.K_LSHIFT or event.key == pygame.K_RSHIFT:
+        pygame.mixer.Sound.play(settings.horn)
 
     elif event.key == pygame.K_q:
         td.main_menu()
