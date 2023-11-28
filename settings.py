@@ -7,7 +7,10 @@ pygame.mixer.init()
 
 class Settings:
 
+
     def __init__(self):
+
+
         self.screen_width = 910
         self.screen_height = 700
 
@@ -40,5 +43,14 @@ class Settings:
         self.bg_speed = 5
 
         self.bot_generation_time = 1000
+
+        # Scoreboard settings
+
+        self.nickname = ''
+        self.score = 0
+        self.high_score = 0
+
+        
+
 
         

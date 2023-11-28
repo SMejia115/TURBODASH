@@ -10,6 +10,8 @@ import events
 import random
 from botVehicle import BotVehicle
 from pygame.sprite import Group
+from stats import Stats
+
 
 settings = Settings()
 songs = settings.music
@@ -18,6 +20,9 @@ songs = settings.music
 '''
 The main_manu() function is the main function and is the one called when the game is started. It has no input or output parameters. It initializes pygame, the screen with its dimensions and settings and the main menu of the game.
 '''
+settings = Settings()
+stats = Stats(settings)
+
 def main_menu():
   pygame.init()
   pygame.mixer.init()
@@ -47,6 +52,8 @@ def run_game():
   car = Car(settings, screen, utils.car_image())
   bots = Group()
 
+  # stats = Stats(settings)
+
   #Initial background configuration
 
   bg_y = 0
@@ -57,17 +64,22 @@ def run_game():
 
   pygame.time.set_timer(pygame.USEREVENT, settings.bot_generation_time)
   pygame.time.set_timer(pygame.USEREVENT+1, 10000)
+  pygame.time.set_timer(pygame.USEREVENT+2, 200)
   pause = False
 	
   while True:
-    pause = events.check_events(car, settings, screen, bots, pause)
+    pause = events.check_events(car, settings, screen, bots, pause, stats)
     if not pygame.mixer.music.get_busy():
         play_music()
     if pause:
       pause = pause_menu(screen, pause)
     if not pause:
         car.update(settings)
-        bg_y, current_bg_index, next_bg_index = events.refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index, bots)
+        bg_y, current_bg_index, next_bg_index = events.refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index, bots, stats)
+
+'''
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+'''
 
 def info_game():
   # pygame.init()
@@ -86,9 +98,47 @@ def info_game():
   #       sys.exit()
   #   pygame.display.flip()
 
+'''
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+'''
+
+# def get_nickname(screen, settings):
+#   white = (255, 255, 255)
+#   black = (0, 0, 0)
+#   buttons_menu, buttons_pause, buttons_credits, buttons_lost = utils.list_buttons()
+#   bg_y = 0
+#   current_bg_index = 0
+#   next_bg_index = random.randint(0, len(settings.background_images) - 1)
+#   while True:
+#     for event in pygame.event.get():
+#       if event.type == pygame.QUIT:
+#         sys.exit()
+#       elif event.type == pygame.KEYDOWN:
+#         if event.key == pygame.K_RETURN:
+#           print("Nickname: " + settings.nickname)
+#           run_game()
+#         elif event.key == pygame.K_BACKSPACE:
+#           settings.nickname = settings.nickname[:-1]
+#         else:
+#           settings.nickname += event.unicode
+  
+#     screen.fill(white)
+#     pygame.draw.rect(screen, black, (300, 300, 300, 50))
+#     font = pygame.font.Font(None, 32)
+#     bg_y, current_bg_index, next_bg_index = utils.update_background(settings, screen, bg_y, current_bg_index, next_bg_index)
+#     text = font.render(settings.nickname, True, white)
+#     screen.blit(text, (310, 310))
+#     menu = utils.menu_load(screen, buttons_lost)
+  
+    # menu.run()
+      
+'''
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+'''
+
 def pause_menu(screen, pause):
   
-  settings = Settings()
+  # settings = Settings()
   buttons_menu, buttons_pause, buttons_credits, buttons_lost = utils.list_buttons()
 
   while True:
@@ -118,6 +168,10 @@ def pause_menu(screen, pause):
 
     pygame.display.flip()
 
+
+'''
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+'''
 def lost_menu(screen):
   
   settings = Settings()
