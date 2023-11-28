@@ -115,11 +115,13 @@ def generate_bot(settings, screen, bots):
 
 
 def update_bots(bots, settings, car, screen, stats):
+    activated_bots=[]
     for bot in bots.copy():
         bot.update(settings)
         if bot.rect.top >= settings.screen_height:
             bots.remove(bot)
-            # print("Bot deleted")
+            #print("Bot deleted")
+    check_distance(car, bots, stats)
     colision = check_collisions(car, bots)
     if colision:
         bots.empty()
@@ -139,3 +141,11 @@ def check_collisions(car, bots):
         # print("Car crashed")
         return True
     return False
+
+def check_distance(car, bots, stats):
+    for bot in bots.sprites():
+        if abs(bot.rect.centerx - car.rect.centerx) < 70 and bot not in stats.activated_bots:
+            print("Distance: " + str(abs(bot.rect.x - car.rect.x)))
+            stats.update_power_quantity()
+            stats.activated_bots.add(bot)
+            
