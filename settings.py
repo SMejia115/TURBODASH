@@ -30,6 +30,13 @@ class Settings:
                     pygame.image.load('./assets/img/bots/bot5.png'),
                     pygame.image.load('./assets/img/bots/bot6.png')]
         
+        self.cars = [{"name": pygame.image.load('./assets/img/bots/nameBot1.png'), "car": pygame.image.load('./assets/img/bots/bot1.png')},
+                    {"name": pygame.image.load('./assets/img/bots/nameBot2.png'), "car": pygame.image.load('./assets/img/bots/bot2.png')},
+                    {"name": pygame.image.load('./assets/img/bots/nameBot3.png'), "car": pygame.image.load('./assets/img/bots/bot3.png')},
+                    {"name": pygame.image.load('./assets/img/bots/nameBot4.png'), "car": pygame.image.load('./assets/img/bots/bot4.png')},
+                    {"name": pygame.image.load('./assets/img/bots/nameBot5.png'), "car": pygame.image.load('./assets/img/bots/bot5.png')},
+                    {"name": pygame.image.load('./assets/img/bots/nameBot6.png'), "car": pygame.image.load('./assets/img/bots/bot6.png')}]
+    
         self.crash = pygame.mixer.Sound("./assets/sounds/car-explosion.mp3")
         self.car = pygame.mixer.Sound("./assets/sounds/car_engine.mp3")
         self.horn = pygame.mixer.Sound("./assets/sounds/car-horn.mp3")
