@@ -10,6 +10,7 @@ from settings import Settings
 from pygame.sprite import Group
 from botVehicle import BotVehicle
 import random
+import math
 
 
 settings = Settings()
@@ -148,10 +149,37 @@ def check_collisions(car, bots):
     return False
 
 def check_distance(car, bots, stats):
+
     for bot in bots.sprites():
-        if abs(bot.rect.centerx - car.rect.centerx) < 70 and bot not in stats.activated_bots:
-            # print("Distance: " + str(abs(bot.rect.x - car.rect.x)))
+        distance_x = abs(bot.rect.centerx - car.rect.centerx)
+        distance_y = abs(bot.rect.centery - car.rect.centery)
+
+        # Distancia euclidiana
+        distance = math.sqrt(distance_x ** 2 + distance_y ** 2)
+
+        if distance < 100 and bot not in stats.activated_bots and stats.power_quantity <= 5:
+        # if abs(bot.rect.centerx - car.rect.centerx) < 70 and abs(bot.rect.bottom - car.rect.bottom) and bot not in stats.activated_bots:
             pygame.mixer.Sound.play(settings.power_up)
             stats.update_power_quantity()
             stats.activated_bots.add(bot)
             
+
+'''
+Handle Power Up
+'''
+
+def handle_power_up(settings, stats):
+        stats.decrease_power_quantity()
+        current_time = pygame.time.get_ticks()
+        elapsed_time = current_time - stats.power_up_time
+        stats.power_quantity = 0
+
+        if elapsed_time < stats.power_duration:
+            # Si el poder está activo, disminuye la velocidad del fondo
+            settings.bg_speed = 2  # Ajusta esto según tus 
+            settings.bot_generation_time = 10000
+        else:
+            # Si el poder ha terminado, restablece la velocidad del fondo
+            settings.bg_speed = 5
+            stats.power_up = False
+            settings.bot_generation_time = 1000

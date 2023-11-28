@@ -15,7 +15,7 @@ class Stats:
         self.font1 = os.path.join('./assets/fonts/8_bit_arcade', '8-bit Arcade in.ttf')
         self.font2 = os.path.join('./assets/fonts/8_bit_arcade', '8-bit Arcade Out.ttf')
         self.power_quantity = 0
-        self.power_duration = 5000
+        self.power_duration = 100
         self.activated_bots = set()
 
         self.power_images = [pygame.image.load('./assets/img/power/1.png'),
@@ -26,6 +26,9 @@ class Stats:
                                 pygame.image.load('./assets/img/power/6.png')
         ]
         
+        self.power_up = False
+
+        self.power_up_time = 0
 
     def update_nickname(self, nickname):
         self.nickname = nickname
@@ -43,6 +46,12 @@ class Stats:
     def update_power_quantity(self):
         if self.power_quantity < 5:
             self.power_quantity += 1
+
+    def decrease_power_quantity(self): 
+        if self.power_quantity > 0:
+            print(self.power_quantity)
+            self.power_quantity -= 5
+            print("Se disminuyó: ", self.power_quantity)
         
     def draw_power_quantity(self, screen):
         screen.blit(self.power_images[self.power_quantity], (self.settings.screen_width - 200, 150))    

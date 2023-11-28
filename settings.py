@@ -58,6 +58,8 @@ class Settings:
         self.score = 0
         self.high_score = 0
 
+        self.call_power = False
+
         
 
 

@@ -61,10 +61,12 @@ def run_game(image_car):
   pygame.time.set_timer(pygame.USEREVENT, settings.bot_generation_time)
   pygame.time.set_timer(pygame.USEREVENT+1, 10000)
   pygame.time.set_timer(pygame.USEREVENT+2, 200)
+
   pause = False
 	
   while True:
     pause = events.check_events(car, settings, screen, bots, pause, stats)
+    utils.handle_power_up(settings, stats)
     if not pygame.mixer.music.get_busy():
         play_music()
     if pause:
