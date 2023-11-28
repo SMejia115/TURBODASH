@@ -36,7 +36,7 @@ def check_events(car, settings, screen, bots, pause, stats):
         elif event.type == pygame.USEREVENT+1: # Evento de aumentar la velocidad de los bots (CADA CIERTO TIEMPO) y la generación de bots   
             settings.bg_speed *= 1.1
             settings.bot_generation_time *= 0.9
-            print("Bots speed increased =", settings.bg_speed, "Bots generation time decreased =", settings.bot_generation_time)
+            # print("Bots speed increased =", settings.bg_speed, "Bots generation time decreased =", settings.bot_generation_time)
         elif event.type == pygame.USEREVENT+2: # Evento para aumentar el puntaje
             # stats.score += 1
             stats.update_score(math.floor(settings.bg_speed))

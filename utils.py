@@ -111,7 +111,7 @@ def generate_bot(settings, screen, bots):
     bot = BotVehicle(settings, screen, bot_image, direction, rail)
     bots.add(bot)
     bot.draw()
-    print("Bot generated , rail: ", rail, " direction: ", direction)
+    # print("Bot generated , rail: ", rail, " direction: ", direction)
 
 
 def update_bots(bots, settings, car, screen, stats):
@@ -119,13 +119,13 @@ def update_bots(bots, settings, car, screen, stats):
         bot.update(settings)
         if bot.rect.top >= settings.screen_height:
             bots.remove(bot)
-            print("Bot deleted")
+            # print("Bot deleted")
     colision = check_collisions(car, bots)
     if colision:
         bots.empty()
         settings.bg_speed = 5
         settings.bot_generation_time = 10000
-        print("Bots deleted")
+        # print("Bots deleted")
         stats.reset_score()
         td.lost_menu(screen)
         return True
@@ -136,6 +136,6 @@ def draw_bots(bots):
 
 def check_collisions(car, bots):
     if pygame.sprite.spritecollideany(car, bots):
-        print("Car crashed")
+        # print("Car crashed")
         return True
     return False
