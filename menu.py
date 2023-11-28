@@ -1,4 +1,8 @@
 '''
+TurboDash was created by Brayan Cataño Giraldo and Santiago Mejia Orejuela in 2023.
+'''
+
+'''
 The pygame and sys library is imported for the correct functioning of the game menu.
 '''
 import pygame
@@ -9,7 +13,8 @@ import random
 import turbodash as td
 
 '''
-Menu class with its respective attributes and methods. In input, the screen, the buttons and the background image are sent to it.
+Menu class with its respective attributes and methods. In input, the screen, the buttons 
+and the background image are sent to it.
 '''
 class Menu:
   def __init__(self, screen, buttons, background_img):
@@ -19,7 +24,8 @@ class Menu:
     self.settings = Settings()
   
   '''
-  Method check_events(self) is used to check what is being done with the buttons shown in the menu and what to do with that event.
+  Method check_events(self) is used to check what is being done with the buttons shown in 
+  the menu and what to do with that event.
   '''
   def check_events(self):
     for event in pygame.event.get():
@@ -54,7 +60,7 @@ class Menu:
     current_bg_index = 0
     next_bg_index = random.randint(0, len(self.settings.background_images) - 1)
     while True:
-      # Desplazar el fondo
+      # Move the background
       bg_y, current_bg_index, next_bg_index = utils.update_background( self.settings, self.screen, bg_y, current_bg_index, next_bg_index)
     #   bg_y += self.settings.bg_speed
     # # Si el fondo se desplaza fuera de la pantalla, reiniciarlo
@@ -69,10 +75,15 @@ class Menu:
     #   # Dibujar el fondo en la pantalla
     #   self.screen.blit(self.settings.background_images[current_bg_index], (0, bg_y))
     #   self.screen.blit(self.settings.background_images[next_bg_index], (0, bg_y - self.settings.screen_height))
+
+      # Verify events
       self.check_events() 
+
+      # Draw the buttons
       for button in self.buttons:
         button.draw(self.screen)
       
+      # Verification of music playback
       if not pygame.mixer.music.get_busy():
         td.play_music()
 
