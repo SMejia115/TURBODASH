@@ -68,7 +68,7 @@ def run_game():
   pause = False
 	
   while True:
-    pause = events.check_events(car, settings, screen, bots, pause)
+    pause = events.check_events(car, settings, screen, bots, pause, stats)
     if not pygame.mixer.music.get_busy():
         play_music()
     if pause:

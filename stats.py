@@ -53,8 +53,6 @@ class Stats:
         
         screen.blit(score2, score2_rect)
         screen.blit(score1, score1_rect)
-        print("High score: ", self.high_score)
-        print("Score: ", self.score)
         screen.blit(high_score2, max_score2_rect)
         screen.blit(high_score1, max_score1_rect)
 
