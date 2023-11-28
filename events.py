@@ -39,7 +39,7 @@ def check_events(car, settings, screen, bots, pause, stats):
             # print("Bots speed increased =", settings.bg_speed, "Bots generation time decreased =", settings.bot_generation_time)
         elif event.type == pygame.USEREVENT+2: # Evento para aumentar el puntaje
             # stats.score += 1
-            stats.update_score(math.floor(settings.bg_speed))
+            stats.update_stats(math.floor(settings.bg_speed))
             # stats.draw_score(screen)
     return pause
 
@@ -97,6 +97,7 @@ def refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index,
     utils.draw_bots(bots)
 
     stats.draw_score(screen)
+    stats.draw_power_quantity(screen)
 
     pygame.display.flip()
     return bg_y, current_bg_index, next_bg_index

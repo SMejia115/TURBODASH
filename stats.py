@@ -14,6 +14,17 @@ class Stats:
         self.nickname = ''
         self.font1 = os.path.join('./assets/fonts/8_bit_arcade', '8-bit Arcade in.ttf')
         self.font2 = os.path.join('./assets/fonts/8_bit_arcade', '8-bit Arcade Out.ttf')
+        self.power_quantity = 0
+        self.power_duration = 5000
+        self.activated_bots = set()
+
+        self.power_images = [pygame.image.load('./assets/img/power/1.png'),
+                             pygame.image.load('./assets/img/power/2.png'),
+                                pygame.image.load('./assets/img/power/3.png'),
+                                pygame.image.load('./assets/img/power/4.png'),
+                                pygame.image.load('./assets/img/power/5.png'),
+                                pygame.image.load('./assets/img/power/6.png')
+        ]
         
 
     def update_nickname(self, nickname):
@@ -25,9 +36,17 @@ class Stats:
             self.high_score = score
     
     
-    def update_score(self, score):
+    def update_stats(self, score):
         self.update_high_score(self.score)
         self.score += score
+
+    def update_power_quantity(self):
+        if self.power_quantity < 5:
+            self.power_quantity += 1
+        
+    def draw_power_quantity(self, screen):
+        screen.blit(self.power_images[self.power_quantity], (self.settings.screen_width - 200, 150))    
+
        
 
     
@@ -60,6 +79,7 @@ class Stats:
     The reset_stats(self) method is used to reset the statistics.
     '''
     def reset_score(self):
+        self.power_quantity = 0
         self.score = 0
     '''
     The save_score(self) method is used to save the score.
