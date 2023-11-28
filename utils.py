@@ -15,6 +15,11 @@ import random
 settings = Settings()
 
 '''
+The pygame.mixer library is imported to play the background music of the game.
+'''
+pygame.mixer.init()
+
+'''
 The list_buttons() function is the function in charge of creating the buttons and adding them to a list of buttons. It has no input parameters and as output parameters it has the list of buttons.
 '''
 def list_buttons():
@@ -146,6 +151,7 @@ def check_distance(car, bots, stats):
     for bot in bots.sprites():
         if abs(bot.rect.centerx - car.rect.centerx) < 70 and bot not in stats.activated_bots:
             print("Distance: " + str(abs(bot.rect.x - car.rect.x)))
+            pygame.mixer.Sound.play(settings.power_up)
             stats.update_power_quantity()
             stats.activated_bots.add(bot)
             
