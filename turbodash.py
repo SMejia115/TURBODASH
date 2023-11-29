@@ -81,7 +81,8 @@ def run_game(image_car):
   while True:
     # Checking keyboard events returning a Boolean value for pause
     pause = events.check_events(car, settings, screen, bots, pause, stats)
-    utils.handle_power_up(settings, stats)
+    if stats.power_up:
+      stats.handle_power(settings)
     # Verification of music playback
     if not pygame.mixer.music.get_busy():
         play_music()

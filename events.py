@@ -84,9 +84,7 @@ def check_keydown_events(car, event, settings, screen, stats):
         sys.exit()
 
     elif event.key == pygame.K_SPACE:
-        if stats.power_quantity > 0:
-            stats.power_up = True
-            stats.power_up_time = pygame.time.get_ticks()
+        stats.activate_power()
             
             
 
