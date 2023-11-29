@@ -54,6 +54,7 @@ class Settings:
     self.car = pygame.mixer.Sound("./assets/sounds/car_engine.mp3")
     self.horn = pygame.mixer.Sound("./assets/sounds/car-horn.mp3")
     self.power_up = pygame.mixer.Sound("./assets/sounds/power_up.mp3")
+    self.acceleration = pygame.mixer.Sound("./assets/sounds/acceleration.mp3")
     
     self.music = ['./assets/sounds/music/FeelTheRushJunkieXLRemixElectroVersion.mp3',
                 './assets/sounds/music/MyFriendDarioElectro.mp3',

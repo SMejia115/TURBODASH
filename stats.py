@@ -8,20 +8,18 @@ The pygame and os library imported for the correct functioning of the game.
 import os
 import pygame
 
+'''
+The pygame.mixer library is imported to play the background music of the game.
+'''
+pygame.mixer.init()
+
 class Stats:
   '''
-  Statistics class with its respective attributes and methods. The input is sent settings.
-  '''
-  '''
-  The settings, the game active, the high score, the score, the nickname, the font1, the font2,
-  the power quantity, the power duration and the activated bots are initialized.
-
   Function name: __init__
   Input: settings
   Output: None
   description: The settings, the game active, the high score, the score, the nickname, the font1, the font2,
   the power quantity, the power duration and the activated bots are initialized.
-
   '''
   def __init__(self, settings):
     self.settings = settings
@@ -61,47 +59,36 @@ class Stats:
     self.nickname = nickname
 
   '''
-  The update_high_score(self, score) method is used to update the high score.
-
   Function name: update_high_score
   Input: score
   Output: None
   description: This function is used to update the high score.
-
   '''
   def update_high_score(self, score):
     if score > self.high_score:
       self.high_score = score
   
   '''
-  The update_stats(self, score) method is used to update the statistics.
-
   Function name: update_stats
   Input: score
   Output: None
   description: This function is used to update the statistics.
-
   '''
   def update_stats(self, score):
     self.update_high_score(self.score)
     self.score += score
 
   '''
-  The update_power_quantity(self) method is used to update the power quantity.
-
   Function name: update_power_quantity
   Input: None
   Output: None
   description: This function is used to update the power quantity.
-
   '''
   def update_power_quantity(self):
     if self.power_quantity < 5:
       self.power_quantity += 1
 
   '''
-  The draw_power_quantity(self) method is used to draw the power quantity.
-
   Function name: draw_power_quantity
   Input: None
   Output: None
@@ -111,13 +98,10 @@ class Stats:
     screen.blit(self.power_images[self.power_quantity], (self.settings.screen_width - 200, 150))    
 
   '''
-  The draw_score(self) method is used to draw the score.
-
   Function name: draw_score
   Input: None
   Output: None
   description: This function is used to draw the score.
-
   '''
   def draw_score(self, screen):
     '''
@@ -191,7 +175,6 @@ class Stats:
   Input: None
   Output: None
   description: This function is used to draw the score.
-  
   '''
   def draw_score(self, screen):
     font1 = pygame.font.Font(self.font1, 35)
@@ -220,44 +203,55 @@ class Stats:
     screen.blit(high_score2, max_score2_rect)
     screen.blit(high_score1, max_score1_rect)
 
-
-
   '''
-  The reset_stats(self) method is used to reset the statistics.
+  Function name: reset_stats
+  Input: None
+  Output: None
+  description: This function is used to reset the statistics.
   '''
   def reset_score(self):
     self.power_quantity = 0
     self.score = 0
 
   '''
-  The save_score(self) method is used to save the score.
+  Function name: save_score
+  Input: None
+  Output: None
+  description: This function is used to save the score.
   '''
   def save_score(self):
     with open('./assets/high_scores.txt', 'a') as file:
       file.write(f'{self.nickname} {self.score}\n')
 
   '''
-  The get_high_score(self) method is used to get the high score.
+  Function name: get_high_score
+  Input: None
+  Output: None
+  description: This function is used to get the high score.
   '''
-    # def get_high_score(self):
-    #     with open('./assets/high_scores.txt', 'r') as file:
-    #         for line in file:
-    #             if line != '':
-    #                 score = line.split(' ')[1]
-    #                 if int(score) > self.high_score:
-    #                     self.high_score = int(score)
-    #     return self.high_score
-
   def get_high_score(self):
     if self.score >= self.high_score:
       self.high_score = self.score
 
+  '''
+  Function name: activate_power
+  Input: None
+  Output: None
+  description: This function is used to activate the power.
+  '''
   def activate_power(self):
     if self.power_quantity == 5:
+      pygame.mixer.Sound.play(self.settings.acceleration)
       self.power_up = True
       self.power_up_time = pygame.time.get_ticks()
       self.power_quantity = 0  # Gasta todo el acumulado
 
+  '''
+  Function name: handle_power
+  Input: None
+  Output: None
+  description: This function is used to handle the power.
+  '''
   def handle_power(self, settings):
         current_time = pygame.time.get_ticks()
         elapsed_time = current_time - self.power_up_time
