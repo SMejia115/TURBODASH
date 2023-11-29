@@ -26,9 +26,11 @@ stats = Stats(settings)
 songs = settings.music
 
 '''
-The main_manu() function is the main function and is the one called when the game is started. 
+Function name: main_menu()
+Input parameters: None
+Output parameters: None
+Description: The main_menu() function is the main function and is the one called when the game is started.
 It has no input or output parameters. It initializes pygame, the screen with its dimensions
-and settings and the main menu of the game.
 '''
 def main_menu():
   # Pygame is initialized and the screen is set.
@@ -48,13 +50,18 @@ def main_menu():
   menu.run()
 
 '''
-The run_game() function is the one that starts the game and is called after pressing the play button. 
-It has no input or output parameters. It initializes the cart and calls the functions and classes in charge 
+Function name: run_game()
+Input parameters: None
+Output parameters: None
+Description: The run_game() function is the one that starts the game and is called after pressing the play button.
+It has no input or output parameters. It initializes the cart and calls the functions and classes in charge
 of the car and screen refresh functions.
+
 '''
 def run_game(image_car):
   # pygame.init()
   # Settings, screen, car and group bots are initialized.
+  stats.reset_score()
   settings = Settings()
   screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
   pygame.display.set_caption("TurboDash")
@@ -81,6 +88,8 @@ def run_game(image_car):
   while True:
     # Checking keyboard events returning a Boolean value for pause
     pause = events.check_events(car, settings, screen, bots, pause, stats)
+    if stats.power_up:
+      stats.handle_power(settings)
     # Verification of music playback
     if not pygame.mixer.music.get_busy():
         play_music()
@@ -98,10 +107,14 @@ def run_game(image_car):
 '''
 
 '''
-The info_game() function is the function that presents the credits screen and additional game information 
-and is called after pressing the info button. It has no input or output parameters. 
-It initializes the menu class and calls the functions and classes in charge of the background 
+Function name: info_game()
+Input parameters: None
+Output parameters: None
+Description: The info_game() function is the function that presents the credits screen and additional game information
+and is called after pressing the info button. It has no input or output parameters.
+It initializes the menu class and calls the functions and classes in charge of the background
 and screen movement functions.
+
 '''
 def info_game():
   # pygame.init()
@@ -119,48 +132,20 @@ def info_game():
   menu.run()
 
 
+
 '''
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 '''
 
-# def get_nickname(screen, settings):
-#   white = (255, 255, 255)
-#   black = (0, 0, 0)
-#   buttons_menu, buttons_pause, buttons_credits, buttons_lost = utils.list_buttons()
-#   bg_y = 0
-#   current_bg_index = 0
-#   next_bg_index = random.randint(0, len(settings.background_images) - 1)
-#   while True:
-#     for event in pygame.event.get():
-#       if event.type == pygame.QUIT:
-#         sys.exit()
-#       elif event.type == pygame.KEYDOWN:
-#         if event.key == pygame.K_RETURN:
-#           print("Nickname: " + settings.nickname)
-#           run_game()
-#         elif event.key == pygame.K_BACKSPACE:
-#           settings.nickname = settings.nickname[:-1]
-#         else:
-#           settings.nickname += event.unicode
-  
-#     screen.fill(white)
-#     pygame.draw.rect(screen, black, (300, 300, 300, 50))
-#     font = pygame.font.Font(None, 32)
-#     bg_y, current_bg_index, next_bg_index = utils.update_background(settings, screen, bg_y, current_bg_index, next_bg_index)
-#     text = font.render(settings.nickname, True, white)
-#     screen.blit(text, (310, 310))
-#     menu = utils.menu_load(screen, buttons_lost)
-  
-    # menu.run()
-      
-'''
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-'''
 
 '''
-The pause_menu() function is the function that displays the pause screen and is called after pressing 
-the p key on the keyboard in the middle of the game. It has the game screen and a boolean value pause. 
+Function name: pause_menu(screen, pause)
+Input parameters: screen, pause
+Output parameters: pause
+Description: The pause_menu() function is the function that displays the pause screen and is called after pressing
+the p key on the keyboard in the middle of the game. It has the game screen and a boolean value pause.
 It returns the value of this changed boolean.
+
 '''
 def pause_menu(screen, pause):
   
@@ -203,9 +188,13 @@ def pause_menu(screen, pause):
 '''
 
 '''
-The lost_menu() function is the function that displays the lost screen and is called after the car 
-collides with another vehicle. It has the game screen. It calls the main_menu() function when pressing 
+Function name: lost_menu(screen)
+Input parameters: screen
+Output parameters: None
+Description: The lost_menu() function is the function that displays the lost screen and is called after the car
+collides with another vehicle. It has the game screen. It calls the main_menu() function when pressing
 the q key on the keyboard.
+
 '''
 def lost_menu(screen):
   
@@ -249,9 +238,13 @@ def lost_menu(screen):
 '''
 
 '''
-The play_music() function is the function that plays the game music and is called after pygame detects 
-that the song it is playing is finished, playing a random song from the song list. 
+Function name: play_music()
+Input parameters: None
+Output parameters: None
+Description: The play_music() function is the function that plays the game music and is called after pygame detects
+that the song it is playing is finished, playing a random song from the song list.
 It has no input or output parameters.
+
 '''
 def play_music():
   # The volume of music to be played is defined
@@ -266,10 +259,14 @@ def play_music():
 '''
 
 '''
-The choose_car() function is the function that displays the car selection screen and is called 
-after pressing the play button. It has no input or output parameters. From there, it calls main_menu() 
-again by pressing the q key on the keyboard and selects one of the cars by pressing the space key on 
+Function name: choose_car()
+Input parameters: None
+Output parameters: None
+Description: The choose_car() function is the function that displays the car selection screen and is called
+after pressing the play button. It has no input or output parameters. From there, it calls main_menu()
+again by pressing the q key on the keyboard and selects one of the cars by pressing the space key on
 the keyboard, calling the function run_game(car) sending it the selected car.
+
 '''
 def choose_car():
   # Screen and dictionary of car names and images initialization.

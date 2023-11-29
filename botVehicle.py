@@ -49,6 +49,11 @@ class BotVehicle(Sprite):
 
   '''
   The update method is defined, which receives the settings.
+
+  Function name: update
+  Input: settings
+  Output: None
+  description: This function is used to update the bot.
   '''
   def update(self, settings):
     if self.direction == 1:
@@ -60,6 +65,12 @@ class BotVehicle(Sprite):
 
   '''
   The draw method is defined, which draws the bot on the screen.
+
+  Function name: draw
+  Input: None
+  Output: None
+  description: This function is used to draw the bot on the screen.
+  
   '''
   def draw(self):
     self.screen.blit(self.image, self.rect)
