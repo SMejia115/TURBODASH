@@ -21,6 +21,11 @@ class Button:
 
 	'''
   The draw(self, screen) method is used to draw the button depending on the screen dimensions to be used.
+
+	Function name: draw
+	Input: screen
+	Output: None
+	description: This function is used to draw the button depending on the screen dimensions to be used.
   '''	
 	def draw(self, screen):
 		if self.is_hovered:
@@ -30,12 +35,22 @@ class Button:
 
 	'''
   The check_hover(self, screen) method is used to check whether to display the hover image.
+
+	Function name: check_hover
+	Input: screen
+	Output: None
+	description: This function is used to check whether to display the hover image.
   '''
 	def check_hover(self, pos):
 		self.is_hovered = self.rect.collidepoint(pos)
 
 	'''
   The perform_action(self, screen) method is used to call the action to be performed.
+
+	Function name: perform_action
+	Input: None
+	Output: None
+	description: This function is used to call the action to be performed.
   '''
 	def perform_action(self):
 		if self.action is not None:

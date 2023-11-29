@@ -38,6 +38,11 @@ class Car:
 	'''
 	The update(self, settings) method is used to update the position of the carriage depending 
 	on the movement made.
+
+	Function name: update
+	Input: settings
+	Output: None
+	description: This function is used to update the position of the carriage depending
 	'''
 	def update(self, settings):
 		if self.moving_right and self.rect.right < (self.screen_rect.right-settings.road_limit):
@@ -58,6 +63,11 @@ class Car:
 
 	'''
 	The draw(self) method is used to draw the carriage.
+
+	Function name: draw
+	Input: None
+	Output: None
+	description: This function is used to draw the carriage.
 	'''
 	def draw(self):
 		self.screen.blit(self.image, self.rect)

@@ -26,6 +26,13 @@ class Menu:
   '''
   Method check_events(self) is used to check what is being done with the buttons shown in 
   the menu and what to do with that event.
+
+  Function name: check_events
+  Input: None
+  Output: None
+  description: This function is used to check what is being done with the buttons shown in
+  the menu and what to do with that event.
+
   '''
   def check_events(self):
     for event in pygame.event.get():
@@ -44,6 +51,12 @@ class Menu:
 
   '''
   Method draw(self) is used to draw the menu with its respective image and buttons.
+
+  Function name: draw
+  Input: None
+  Output: None
+  description: This function is used to draw the menu with its respective image and buttons.
+
   '''
   def draw(self):
     utils.update_background(self.screen, self.settings)
@@ -54,6 +67,12 @@ class Menu:
 
   '''
   Method run(self) is used to call the other methods.
+
+  Function name: run
+  Input: None
+  Output: None
+  description: This function is used to call the other methods.
+
   '''
   def run(self):
     bg_y = 0
@@ -62,19 +81,6 @@ class Menu:
     while True:
       # Move the background
       bg_y, current_bg_index, next_bg_index = utils.update_background( self.settings, self.screen, bg_y, current_bg_index, next_bg_index)
-    #   bg_y += self.settings.bg_speed
-    # # Si el fondo se desplaza fuera de la pantalla, reiniciarlo
-    #   if bg_y >= self.settings.screen_height:
-    #     # Cambiar la imagen actual a la siguiente
-    #     current_bg_index = next_bg_index
-    #     # Seleccionar una nueva imagen para próxima
-    #     next_bg_index = random.randint(0, len(self.settings.background_images) - 1)
-    #     # Reiniciar la posición del fondo
-    #     bg_y = 0
-
-    #   # Dibujar el fondo en la pantalla
-    #   self.screen.blit(self.settings.background_images[current_bg_index], (0, bg_y))
-    #   self.screen.blit(self.settings.background_images[next_bg_index], (0, bg_y - self.settings.screen_height))
 
       # Verify events
       self.check_events() 
