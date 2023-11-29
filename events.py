@@ -1,5 +1,10 @@
 '''
-The pygame and sys library for handling events such as cycles, if's or TurboDash screen refresh is imported, as well as the files needed for this task.
+TurboDash was created by Brayan Cataño Giraldo and Santiago Mejia Orejuela in 2023.
+'''
+
+'''
+The pygame and sys library for handling events such as cycles, if's or TurboDash screen refresh 
+is imported, as well as the files needed for this task.
 '''
 import sys
 import pygame
@@ -9,6 +14,9 @@ from stats import Stats
 import math
 from settings import Settings
 
+'''
+The settings class is initialized.
+'''
 settings = Settings()
 
 '''
@@ -25,7 +33,7 @@ def check_events(car, settings, screen, bots, pause, stats):
             sys.exit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_p:
-                # Cambiar la bandera de pausa
+                # Change the pause flag when pressing p
                 return not pause
             elif not pause:
                 check_keydown_events(car, event, settings, screen, stats)
@@ -33,11 +41,11 @@ def check_events(car, settings, screen, bots, pause, stats):
             check_keyup_events(car, event, stats)
         elif event.type == pygame.USEREVENT: # Evento de generación de bots (CADA CIERTO TIEMPO)
             utils.generate_bot(settings, screen, bots)
-        elif event.type == pygame.USEREVENT+1: # Evento de aumentar la velocidad de los bots (CADA CIERTO TIEMPO) y la generación de bots   
+        elif event.type == pygame.USEREVENT+1: # Event to increase the speed of bots and bot generation.   
             settings.bg_speed *= 1.1
             settings.bot_generation_time *= 0.9
             # print("Bots speed increased =", settings.bg_speed, "Bots generation time decreased =", settings.bot_generation_time)
-        elif event.type == pygame.USEREVENT+2: # Evento para aumentar el puntaje
+        elif event.type == pygame.USEREVENT+2: # Event to increase the score
             # stats.score += 1
             stats.update_stats(math.floor(settings.bg_speed))
             # stats.draw_score(screen)
@@ -45,7 +53,9 @@ def check_events(car, settings, screen, bots, pause, stats):
 
 
 '''
-The function check_keydown_events(car, events) is in charge of checking the different events related to the keydown of the keys. It has as input parameters the car and the event to analyze and has no output parameters. Depending on the type of event it returns True boolean values of car movement.
+The function check_keydown_events(car, events) is in charge of checking the different events 
+related to the keydown of the keys. It has as input parameters the car and the event to analyze and 
+has no output parameters. Depending on the type of event it returns True boolean values of car movement.
 '''
 def check_keydown_events(car, event, settings, screen, stats):
     if event.key == pygame.K_RIGHT:
@@ -81,7 +91,9 @@ def check_keydown_events(car, event, settings, screen, stats):
             
 
 '''
-The function check_keyup_events(car, events) is in charge of checking the different events related to the keyup of the keys. It has as input parameters the car and the event to analyze and has no output parameters. Depending on the type of event it returns False boolean values of car movement.
+The function check_keyup_events(car, events) is in charge of checking the different events 
+related to the keyup of the keys. It has as input parameters the car and the event to analyze and has 
+no output parameters. Depending on the type of event it returns False boolean values of car movement.
 '''
 def check_keyup_events(car, event, stats):
     if event.key == pygame.K_RIGHT:
@@ -101,7 +113,9 @@ def check_keyup_events(car, event, stats):
 
 
 '''
-The function refresh_screen(screen, car) is in charge of refreshing the screen for the different elements that interact in the game such as the car or the road. It has as input parameters the screen and the car and no output parameters. It calls the different functions and class methods needed for this task.
+The function refresh_screen(screen, car) is in charge of refreshing the screen for the different
+elements that interact in the game such as the car or the road. It has as input parameters the screen 
+and the car and no output parameters. It calls the different functions and class methods needed for this task.
 '''
 def refresh_screen(screen, car, settings, bg_y, current_bg_index, next_bg_index, bots, stats):
 
