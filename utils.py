@@ -31,6 +31,12 @@ pygame.mixer.init()
 The list_buttons() function is the function in charge of creating the buttons and 
 adding them to a list of buttons. It has no input parameters and as output parameters 
 it has the list of buttons.
+
+Function name: list_buttons
+Input: None
+Output: None
+description: This function is used to create the buttons and add them to a list of buttons.
+
 '''
 def list_buttons():
   settings = Settings()
@@ -59,6 +65,12 @@ def list_buttons():
 '''
 The function menu_load(screen, buttons) is the function in charge of creating the menu. 
 It has screen and buttons as input parameters and as output parameters it has the created menu.
+
+Function name: menu_load
+Input: screen, buttons
+Output: None
+description: This function is used to create the menu.
+
 '''
 def menu_load(screen, buttons):
   menu = Menu(screen, buttons, pygame.image.load("./assets/img/roads/forestRoad1.png"))
@@ -67,6 +79,12 @@ def menu_load(screen, buttons):
 '''
 The function pause_load(screen, buttons) is the function in charge of creating the pause menu.
 It has screen and buttons as input parameters and as output parameters it has the created pause menu.
+
+Function name: pause_load
+Input: screen, buttons
+Output: None
+description: This function is used to create the pause menu.
+
 '''
 def pause_load(screen, buttons):
   pause = Menu(screen, buttons, pygame.image.load("./assets/img/backgrounds/1.jpg"))
@@ -75,6 +93,12 @@ def pause_load(screen, buttons):
 '''
 The road_image(screen) function is the function responsible for displaying the road. 
 It has no input or output parameters.
+
+Function name: road_image
+Input: screen
+Output: None
+description: This function is used to display the road.
+
 '''
 def road_image(screen, settings):
   bg_y = 0
@@ -89,6 +113,12 @@ def road_image(screen, settings):
 '''
 The car_image() function is the function responsible for loading the image of the car and 
 giving it transparency
+
+Function name: car_image
+Input: None
+Output: None
+description: This function is used to load the image of the car and give it transparency
+
 '''
 def car_image():
   car = pygame.image.load("./assets/img/cars/car2.png")
@@ -100,6 +130,12 @@ def car_image():
 Function update_background(settings, screen) is the function in charge of updating the 
 background image. It has screen and settings as input parameters and as output parameters it 
 has the updated background image.
+
+Function name: update_background
+Input: settings, screen
+Output: None
+description: This function is used to update the background image.
+
 '''
 def update_background(settings, screen, bg_y, current_bg_index, next_bg_index):
   bg_y += settings.bg_speed
@@ -122,6 +158,12 @@ def update_background(settings, screen, bg_y, current_bg_index, next_bg_index):
 Function generate_bot(settings, screen, bots) is the function in charge of generating the bots. 
 It has screen, settings and bots as input parameters and as output parameters 
 it has the generated bots.
+
+Function name: generate_bot
+Input: settings, screen, bots
+Output: None
+description: This function is used to generate the bots.
+
 '''
 def generate_bot(settings, screen, bots):
   bot_image = random.choice(settings.bot_images)
@@ -139,6 +181,12 @@ def generate_bot(settings, screen, bots):
 Function update_bots(bots, settings, car, screen, stats) is the function in charge of updating the bots.
 It has bots, settings, car, screen and stats as input parameters and as output parameters
 it has the updated bots.
+
+Function name: update_bots
+Input: bots, settings, car, screen, stats
+Output: None
+description: This function is used to update the bots.
+
 '''
 def update_bots(bots, settings, car, screen, stats):
   activated_bots=[]
@@ -162,6 +210,11 @@ def update_bots(bots, settings, car, screen, stats):
 Function draw_bots(bots) is the function in charge of drawing the bots.
 It has bots as input parameters and as output parameters
 it has the drawn bots.
+
+Function name: draw_bots
+Input: bots
+Output: None
+description: This function is used to draw the bots.
 '''
 def draw_bots(bots):
   for bot in bots.sprites():
@@ -171,6 +224,12 @@ def draw_bots(bots):
 Function check_collisions(car, bots) is the function in charge of checking the collisions.
 It has car and bots as input parameters and as output parameters
 it has the collisions checked.
+
+Function name: check_collisions
+Input: car, bots
+Output: None
+description: This function is used to check the collisions.
+
 '''
 def check_collisions(car, bots):
   if pygame.sprite.spritecollideany(car, bots):
@@ -182,6 +241,13 @@ def check_collisions(car, bots):
 Function check_distance(car, bots, stats) is the function in charge of checking the distance.
 It has car, bots and stats as input parameters and as output parameters
 it has the distance checked.
+
+Function name: check_distance
+Input: car, bots, stats
+Output: None
+description: This function is used to check the distance.
+
+
 '''
 def check_distance(car, bots, stats):
 
@@ -201,6 +267,12 @@ def check_distance(car, bots, stats):
 
 '''
 Handle Power Up
+
+Function name: handle_power_up
+Input: settings, stats
+Output: None
+description: This function is used to handle the power up.
+
 '''
 
 def handle_power_up(settings, stats):

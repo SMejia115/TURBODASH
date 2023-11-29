@@ -15,6 +15,13 @@ class Stats:
   '''
   The settings, the game active, the high score, the score, the nickname, the font1, the font2,
   the power quantity, the power duration and the activated bots are initialized.
+
+  Function name: __init__
+  Input: settings
+  Output: None
+  description: The settings, the game active, the high score, the score, the nickname, the font1, the font2,
+  the power quantity, the power duration and the activated bots are initialized.
+
   '''
   def __init__(self, settings):
     self.settings = settings
@@ -43,12 +50,24 @@ class Stats:
 
   '''
   The update_nickname(self, nickname) method is used to update the nickname.
+
+  Function name: update_nickname
+  Input: nickname
+  Output: None
+  description: This function is used to update the nickname.
+
   '''
   def update_nickname(self, nickname):
     self.nickname = nickname
 
   '''
   The update_high_score(self, score) method is used to update the high score.
+
+  Function name: update_high_score
+  Input: score
+  Output: None
+  description: This function is used to update the high score.
+
   '''
   def update_high_score(self, score):
     if score > self.high_score:
@@ -56,6 +75,12 @@ class Stats:
   
   '''
   The update_stats(self, score) method is used to update the statistics.
+
+  Function name: update_stats
+  Input: score
+  Output: None
+  description: This function is used to update the statistics.
+
   '''
   def update_stats(self, score):
     self.update_high_score(self.score)
@@ -63,6 +88,12 @@ class Stats:
 
   '''
   The update_power_quantity(self) method is used to update the power quantity.
+
+  Function name: update_power_quantity
+  Input: None
+  Output: None
+  description: This function is used to update the power quantity.
+
   '''
   def update_power_quantity(self):
     if self.power_quantity < 5:
@@ -70,12 +101,23 @@ class Stats:
 
   '''
   The draw_power_quantity(self) method is used to draw the power quantity.
+
+  Function name: draw_power_quantity
+  Input: None
+  Output: None
+  description: This function is used to draw the power quantity.
   '''
   def draw_power_quantity(self, screen):
     screen.blit(self.power_images[self.power_quantity], (self.settings.screen_width - 200, 150))    
 
   '''
   The draw_score(self) method is used to draw the score.
+
+  Function name: draw_score
+  Input: None
+  Output: None
+  description: This function is used to draw the score.
+
   '''
   def draw_score(self, screen):
     '''
@@ -98,26 +140,59 @@ class Stats:
 
     max_score1_rect.center = (115, 50)
     max_score2_rect.center = (115, 52)
-    
+
+  '''
+  Function name: update_stats
+  Input: score
+  Output: None
+  description: This function is used to update the statistics.
+  '''
   def update_stats(self, score): 
     self.update_high_score(self.score)
     self.score += score
+
+  '''
+  Function name: update_power_quantity
+  Input: None
+  Output: None
+  description: This function is used to update the power quantity.
+
+  '''
     
   def update_power_quantity(self):
     if self.power_quantity < 5:
         self.power_quantity += 1
 
+
+  '''
+  Function name: decrease_power_quantity
+  Input: None
+  Output: None
+  description: This function is used to decrease the power quantity.
+  '''
   def decrease_power_quantity(self): 
     if self.power_quantity > 0:
         print(self.power_quantity)
         self.power_quantity -= 5
         print("Se disminuyó: ", self.power_quantity)
     
+  '''
+  Function name: draw_power_quantity
+  Input: None
+  Output: None
+  description: This function is used to draw the power quantity.
+  '''
   def draw_power_quantity(self, screen):
       screen.blit(self.power_images[self.power_quantity], (self.settings.screen_width - 200, 150))    
 
 
-
+  '''
+  Function name: draw_score
+  Input: None
+  Output: None
+  description: This function is used to draw the score.
+  
+  '''
   def draw_score(self, screen):
     font1 = pygame.font.Font(self.font1, 35)
     font2 = pygame.font.Font(self.font2, 35)
